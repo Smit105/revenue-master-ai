@@ -54,14 +54,17 @@ export default function LoginPage() {
     </div>
   );
 }
-// This code defines a simple login page using React. It includes state management for email, password, and error messages.
-// The handleLogin function checks the credentials and navigates to the dashboard if they are correct, otherwise it sets an error message.
-// The page is styled using Tailwind CSS classes for a clean and modern look.
-// The login form includes fields for email and password, and a submit button to trigger the login process.
-// The page is responsive and centers the login form in the middle of the screen.
-// The error message is displayed if the login attempt fails, providing feedback to the user.
-// The login credentials are hardcoded for demonstration purposes, but in a real application, you would typically validate against a backend service.
-// The useNavigate hook from react-router-dom is used to programmatically navigate to the dashboard upon successful login.
-// The component is exported as the default export, allowing it to be imported and used in other parts of the application.
-// The component is styled using Tailwind CSS for a modern and responsive design.
-// The component uses functional components and hooks from React, making it easy to manage state and side effects.          
+const handleLogin = (e) => {
+  e.preventDefault();
+  console.log("Login attempted with:", email, password); // ✅ ADD THIS
+
+  if (email === "admin@revenueaimaster.com" && password === "admin123") {
+    localStorage.setItem("isAuthenticated", "true");
+    console.log("Login successful. Redirecting..."); // ✅ ADD THIS
+    navigate("/dashboard");
+  } else {
+    console.log("Invalid credentials"); // ✅ ADD THIS
+    setError("Invalid email or password.");
+  }
+};
+// ✅ ADD THIS
