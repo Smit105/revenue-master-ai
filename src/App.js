@@ -1,11 +1,15 @@
-import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginPage from "./LoginPage";
+import DashboardPage from "./DashboardPage";
 
 function App() {
   return (
-    <div style={{ textAlign: 'center', marginTop: '20%' }}>
-      <h1>Welcome to Atlas RevX + RevenueMaster AI</h1>
-      <p>Your Revenue. Optimized. 📈</p>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+      </Routes>
+    </Router>
   );
 }
 
