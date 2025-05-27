@@ -1,4 +1,3 @@
-Update App.js
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./LoginPage";
 import DashboardPage from "./DashboardPage";
