@@ -1,7 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function LoginPage() {
+function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -9,62 +9,46 @@ export default function LoginPage() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    console.log("Login clicked:", email, password); // Debug log
+
     if (email === "admin@revenueaimaster.com" && password === "admin123") {
       localStorage.setItem("isAuthenticated", "true");
+      console.log("Login success"); // Debug log
       navigate("/dashboard");
     } else {
+      console.log("Login failed"); // Debug log
       setError("Invalid email or password.");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-sm">
-        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-        <form onSubmit={handleLogin} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium">Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full border rounded px-3 py-2 mt-1"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full border rounded px-3 py-2 mt-1"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
-          >
-            Log In
-          </button>
-        </form>
-      </div>
+    <div style={{ padding: "2rem" }}>
+      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
+        <div>
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div style={{ marginTop: "1rem" }}>
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <button type="submit" style={{ marginTop: "1rem" }}>Login</button>
+      </form>
     </div>
   );
 }
-const handleLogin = (e) => {
-  e.preventDefault();
-  console.log("Login attempted with:", email, password); // ✅ ADD THIS
 
-  if (email === "admin@revenueaimaster.com" && password === "admin123") {
-    localStorage.setItem("isAuthenticated", "true");
-    console.log("Login successful. Redirecting..."); // ✅ ADD THIS
-    navigate("/dashboard");
-  } else {
-    console.log("Invalid credentials"); // ✅ ADD THIS
-    setError("Invalid email or password.");
-  }
-};
-// ✅ ADD THIS
+export default LoginPage;
+// This code defines a simple login page using React.   
